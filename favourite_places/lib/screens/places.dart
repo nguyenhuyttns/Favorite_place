@@ -6,28 +6,30 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PlacesScreen extends ConsumerWidget {
   const PlacesScreen({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final usePlaces = ref.watch(userPlacesProvider);
+    final userPlaces = ref.watch(userPlacesProvider);
 
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Your places'),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.add),
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (ctx) => const AddPlaceScreen(),
-                  ),
-                );
-              },
-            ),
-          ],
-        ),
-        body: PlacesList(
-          places: usePlaces,
-        ));
+      appBar: AppBar(
+        title: const Text('Your places'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.add),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (ctx) => const AddPlaceScreen(),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+      body: PlacesList(
+        places: userPlaces,
+      ),
+    );
   }
 }
